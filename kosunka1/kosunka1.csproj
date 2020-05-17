@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Card.cs" />
     <Compile Include="CardSet.cs" />
+    <Compile Include="TopCardSet.cs" />
+    <Compile Include="DownCardSet.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

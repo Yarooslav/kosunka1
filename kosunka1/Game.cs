@@ -11,10 +11,11 @@ namespace kosunka1
     class Game
     {
         public CardSet Table { get; }
-        public List<Player> Players { get; }
         public CardSet Deck { get; }
-        public CardSet Pnlgame { get; }
+        private DownCardSet[] downCards = new DownCardSet[7];
         //public Player ActivePlayer { get; set; }
+
+
 
         public Action<Player> MarkActivePlayer;
         public Action<string> ShowMessage;
@@ -28,16 +29,12 @@ namespace kosunka1
             //ActivePlayer = players[0];
         }
 
-        public void Move(Player mover, Card card)
+        public void Move(CardSet from, CardSet to)
         {
-            //if (mover != ActivePlayer) return;
-
-            if (mover.PlayerCards.Cards.IndexOf(card) == -1) return;
-
-            Table.Add(mover.PlayerCards.Pull(card));
-            //ActivePlayer = NextPlayer(ActivePlayer);
-            //MarkActivePlayer(ActivePlayer);
-            Refresh();
+            //проверить возможен ли такой ход
+            //переложить карту, если возможно
+            //рефреш
+            // проверка вигрыша и проигрыша
         }
 
         public void Refresh()
@@ -49,12 +46,7 @@ namespace kosunka1
             Table.Show();
         }
 
-        private Player NextPlayer(Player player)
-        {
-            if (player == Players[Players.Count - 1]) return Players[0];
 
-            return Players[Players.IndexOf(player) + 1];
-        }
 
         //private Player PreviousPlayer(Player player)
         //{
