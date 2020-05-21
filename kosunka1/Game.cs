@@ -72,11 +72,11 @@ namespace kosunka1
                 item.PlayerCards.Add(Deck.Deal(7),Pnlgame.Deal(1));
                
             }
-            for (int n = 0; n < 7; n++)
-            {
-                long amount = GraphicCardSet(n + 2);
-                if (amount > 0) Panel[n + 2][amount - 1].Visible = false;
-            }
+            //for (int n = 0; n < 7; n++)
+            //{
+            //    long amount = GraphicCard(n+2);
+            //    if (amount > 0) Panel[n + 2][amount - 1].Visible = false;
+            //}
             Refresh();
         }
         //public void GameOver()
