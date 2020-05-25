@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace kosunka1
 {
-    class TopCardSet
+    public enum CardColor
     {
-        public CardSet Topcard { get; set; }
+       
+        Black,
+        Red
     }
 }

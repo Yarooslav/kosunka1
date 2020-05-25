@@ -10,27 +10,35 @@ namespace kosunka1
 {
     class Game
     {
+        public CardSet DownCardSet { get; }
+        public CardSet TopCardSet { get; }
         public CardSet Table { get; }
         public CardSet Deck { get; }
         private DownCardSet[] downCards = new DownCardSet[7];
-        //public Player ActivePlayer { get; set; }
+        private TopCardSet[] topCards = new TopCardSet[5];
+        public event Action GameWon;
+
 
 
 
         public Action<Player> MarkActivePlayer;
         public Action<string> ShowMessage;
 
-        public Game(CardSet table, CardSet deck,CardSet pnlgame, params Player[] players)
+        public Game(CardSet table, CardSet deck,CardSet downCards, CardSet topCards)
         {
-            Pnlgame = pnlgame;
+            DownCardSet = downCards;
+            TopCardSet = topCards;
             Table = table;
-            Players = new List<Player>(players);
             Deck = deck;
-            //ActivePlayer = players[0];
+            
         }
 
         public void Move(CardSet from, CardSet to)
-        {
+        { if (from.Cards.IndexOf(to) == 0) return;
+            //Table.Add(from.Pull(to));
+            TopCardSet.Add(from.Pull(5));
+           DownCardSet.Add(from.Pull(7));
+            Refresh();
             //проверить возможен ли такой ход
             //переложить карту, если возможно
             //рефреш
@@ -39,9 +47,17 @@ namespace kosunka1
 
         public void Refresh()
         {
-            foreach (var item in Players)
+            foreach (var item in topCards)
             {
-                item.PlayerCards.Show();
+                item.Topcard.Show();
+
+                foreach (var item1 in downCards)
+                {
+                    item1.Downcard.Show();
+
+
+                }
+
             }
             Table.Show();
         }
@@ -57,12 +73,17 @@ namespace kosunka1
 
         public void Deal()
         {
-            Pnlgame.Mix();
+            
             Deck.Mix();
-            foreach (var item in Players)
+            foreach (var item in topCards)
             {
-                item.PlayerCards.Add(Deck.Deal(7),Pnlgame.Deal(1));
+                item.Topcard.Add(Deck.Deal(7));
                
+            }
+            foreach (var item in downCards)
+            {
+                item.Downcard.Add(Deck.Deal(5));
+
             }
             //for (int n = 0; n < 7; n++)
             //{
@@ -79,6 +100,12 @@ namespace kosunka1
         //            ShowMessage(item.Name + "loose");
         //    }
         //}
+        protected void FireGameWonEvent()
+        {
+            Action wonEvent = GameWon;
+            if (wonEvent != null)
+                wonEvent();
+        }
 
         public void HangUp()
         {

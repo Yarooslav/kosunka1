@@ -8,6 +8,7 @@ namespace kosunka1
 {
     class DownCardSet: CardSet
     {
+        public  CardSet Downcard { get; set; }
         public bool override IsCoorect(Card card)
         {
             //можно ли ее сюда класть?
