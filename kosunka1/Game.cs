@@ -10,13 +10,11 @@ namespace kosunka1
 {
     class Game
     {
-        public CardSet DownCardSet { get; }
-        public CardSet TopCardSet { get; }
         public CardSet Table { get; }
         public CardSet Deck { get; }
         private DownCardSet[] downCards = new DownCardSet[7];
-        private TopCardSet[] topCards = new TopCardSet[5];
-        public event Action GameWon;
+        private TopCardSet[] topCards = new TopCardSet[6];
+        public Action<bool> GameWon;
 
 
 
@@ -24,22 +22,23 @@ namespace kosunka1
         public Action<Player> MarkActivePlayer;
         public Action<string> ShowMessage;
 
-        public Game(CardSet table, CardSet deck,CardSet downCards, CardSet topCards)
+        public Game(CardSet table, CardSet deck,DownCardSet[] downCardSets, CardSet[] topCardSets)
         {
-            DownCardSet = downCards;
-            TopCardSet = topCards;
+            downCards = downCardSets;
+            topCardSets = topCardSets;
             Table = table;
             Deck = deck;
             
         }
 
-        public void Move(CardSet from, CardSet to)
-        { if (from.Cards.IndexOf(to) == 0) return;
-            //Table.Add(from.Pull(to));
-            TopCardSet.Add(from.Pull(5));
-           DownCardSet.Add(from.Pull(7));
-            Refresh();
+        public void Move(CardSet from, CardSet to, int amount)
+        { 
+
+
             //проверить возможен ли такой ход
+            if (to.IsCoorect(from.Peek(amount)))
+                to.Add(from.DealFromTop(amount));
+            Refresh();
             //переложить карту, если возможно
             //рефреш
             // проверка вигрыша и проигрыша
@@ -49,16 +48,17 @@ namespace kosunka1
         {
             foreach (var item in topCards)
             {
-                item.Topcard.Show();
+                item.Show();
 
-                foreach (var item1 in downCards)
+
+
+            }
+                            foreach (var item1 in downCards)
                 {
-                    item1.Downcard.Show();
+                    item1.Show();
 
 
                 }
-
-            }
             Table.Show();
         }
 
@@ -71,25 +71,25 @@ namespace kosunka1
         //    return Players[Players.IndexOf(player) - 1];
         //}
 
+        public void ShowNewCrd()
+        {
+            
+        }
         public void Deal()
         {
             
             Deck.Mix();
-            foreach (var item in topCards)
+            for (int i = 0; i < topCards.Length; i++)
             {
-                item.Topcard.Add(Deck.Deal(7));
-               
+                topCards[i] = new TopCardSet();
             }
-            foreach (var item in downCards)
-            {
-                item.Downcard.Add(Deck.Deal(5));
 
+            for (int i = 0; i < topCards.Length; i++)
+            {
+                downCards[i] = new DownCardSet();
+                downCards[i].Add(Deck.Deal(i));
             }
-            //for (int n = 0; n < 7; n++)
-            //{
-            //    long amount = GraphicCard(n+2);
-            //    if (amount > 0) Panel[n + 2][amount - 1].Visible = false;
-            //}
+
             Refresh();
         }
         //public void GameOver()
@@ -102,9 +102,8 @@ namespace kosunka1
         //}
         protected void FireGameWonEvent()
         {
-            Action wonEvent = GameWon;
-            if (wonEvent != null)
-                wonEvent();
+            //если выиграл
+            GameWon(true);
         }
 
         public void HangUp()

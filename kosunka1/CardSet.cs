@@ -9,6 +9,19 @@ namespace kosunka1
     {
         public List<Card> Cards { get; set; }
 
+        public Card this[int index]
+        {
+            get
+            { return Cards[index]; }
+        }
+        
+        public Card LastCard
+        {
+            get { return Cards[Cards.Count - 1]; }
+        }
+           
+     
+
         protected int Count
         {
             get { return Cards.Count; }
@@ -49,6 +62,19 @@ namespace kosunka1
             }
 
             Cards = newCards;
+        }
+
+        public CardSet Peek(int amount)
+        {
+            return new CardSet(Cards.GetRange(Count - 1 - amount, amount));
+        }
+
+        public CardSet DealFromTop(int amount)
+        {
+            CardSet cardSet = new CardSet();
+            cardSet = Peek(amount);
+            Cards.RemoveRange(Count - 1 - amount, amount);
+            return cardSet;
         }
 
         public Card Pull()
@@ -120,6 +146,11 @@ namespace kosunka1
         {
             Add(cards.Cards.ToArray());
             Add(Pnlgame.Cards.ToArray());
+        }
+
+        public virtual bool IsCoorect(CardSet cards)
+        {
+            return true;
         }
 
     }

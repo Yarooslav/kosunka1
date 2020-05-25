@@ -15,12 +15,18 @@ namespace kosunka1
         public Form1()
         {
             InitializeComponent();
+            game = new Game();
+            game.GameWon += Final;
         }
 
         Card activeCard;
         Game game;
         Player mover;
-       
+
+        private void Final(bool IsWin)
+        {
+            
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {

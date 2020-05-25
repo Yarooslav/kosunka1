@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace kosunka1
 {
-    class TopCardSet
-    {
-        public CardSet Topcard { get; set; }
+    class TopCardSet:CardSet
+    { 
+
     }
 }

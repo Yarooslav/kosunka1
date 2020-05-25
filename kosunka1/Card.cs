@@ -6,6 +6,7 @@ namespace kosunka1
 {
     public enum CardFigure
     {
+        Ace,
         two,
         three,
         four,
@@ -18,7 +19,7 @@ namespace kosunka1
         Jack,
         Queen,
         King,
-        Ace
+
     }
 
     public enum CardSuit
@@ -32,6 +33,11 @@ namespace kosunka1
     {
         public CardFigure Figure { get; set; }
         public CardSuit Suit { get; set; }
+
+        public CardColor Color
+        {
+            get { return Suit == CardSuit.Spade || Suit == CardSuit.Club ? CardColor.Black : CardColor.Red; }
+        }
 
         public Card(CardFigure figure, CardSuit suit)
         {

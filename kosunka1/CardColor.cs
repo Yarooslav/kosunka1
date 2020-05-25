@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace kosunka1
 {
     public enum CardColor
-    {
-       
+    {       
         Black,
         Red
     }
