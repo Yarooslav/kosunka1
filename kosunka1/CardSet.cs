@@ -150,7 +150,7 @@ namespace kosunka1
 
         public virtual bool IsCoorect(CardSet cards)
         {
-            return true;
+            return Cards.Count >= cards.Count;
         }
 
     }

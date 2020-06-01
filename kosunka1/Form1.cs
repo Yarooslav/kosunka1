@@ -15,6 +15,7 @@ namespace kosunka1
         public Form1()
         {
             InitializeComponent();
+            DownCardSet[] dcs = { new GraphicDownCardSet(panel1), new GraphicDownCardSet(panel2) };
             game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck,54), new GraphicCardSet(downpanel, 7), new GraphicCardSet(toppanel, 5));
             game.GameWon += Final;
         }
@@ -26,6 +27,7 @@ namespace kosunka1
 
         private void Final(bool IsWin)
         {
+            //to Game
             //long n;
             //for (n = 9; n < 13; n++)
             //{
@@ -33,6 +35,11 @@ namespace kosunka1
 
             //}
             //return true;
+
+
+
+
+            //MessageBox(W);
 
         }
 
@@ -142,15 +149,12 @@ namespace kosunka1
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            game.Move(game.Deck, game.Table, 3);
+
+
             game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck, 54), new GraphicCardSet(downpanel, 7), new GraphicCardSet(toppanel, 5));
 
             foreach (var card in game.Deck.Cards)
-            {
-                PictureBox cardPictureBox = ((GraphicCard)card).Pb;
-                cardPictureBox.DoubleClick += CardPictureBox_DoubleClick;
-                cardPictureBox.Click += CardPictureBox_Click;
-            }
-            foreach (var card in game.Table.Cards)
             {
                 PictureBox cardPictureBox = ((GraphicCard)card).Pb;
                 cardPictureBox.DoubleClick += CardPictureBox_DoubleClick;
