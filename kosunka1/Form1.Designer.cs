@@ -32,10 +32,11 @@
             this.lbl = new System.Windows.Forms.Label();
             this.pnlDeck = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlTable = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlPlayer1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.downpanel = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlace = new System.Windows.Forms.FlowLayoutPanel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pnlgame = new System.Windows.Forms.FlowLayoutPanel();
+            this.toppanel = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.CardPictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -67,22 +68,22 @@
             // 
             // pnlTable
             // 
-            this.pnlTable.Location = new System.Drawing.Point(424, 28);
+            this.pnlTable.Location = new System.Drawing.Point(424, 240);
             this.pnlTable.Name = "pnlTable";
             this.pnlTable.Size = new System.Drawing.Size(293, 100);
             this.pnlTable.TabIndex = 5;
             // 
-            // pnlPlayer1
+            // downpanel
             // 
-            this.pnlPlayer1.Location = new System.Drawing.Point(218, 134);
-            this.pnlPlayer1.Name = "pnlPlayer1";
-            this.pnlPlayer1.Size = new System.Drawing.Size(509, 100);
-            this.pnlPlayer1.TabIndex = 5;
-            this.pnlPlayer1.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPlayer1_Paint);
+            this.downpanel.Location = new System.Drawing.Point(218, 134);
+            this.downpanel.Name = "downpanel";
+            this.downpanel.Size = new System.Drawing.Size(509, 100);
+            this.downpanel.TabIndex = 5;
+            this.downpanel.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlPlayer1_Paint);
             // 
             // pnlace
             // 
-            this.pnlace.Location = new System.Drawing.Point(416, 308);
+            this.pnlace.Location = new System.Drawing.Point(406, 338);
             this.pnlace.Name = "pnlace";
             this.pnlace.Size = new System.Drawing.Size(311, 100);
             this.pnlace.TabIndex = 6;
@@ -107,15 +108,24 @@
             this.pnlgame.TabIndex = 8;
             this.pnlgame.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint);
             // 
+            // toppanel
+            // 
+            this.toppanel.Location = new System.Drawing.Point(288, 28);
+            this.toppanel.Name = "toppanel";
+            this.toppanel.Size = new System.Drawing.Size(418, 100);
+            this.toppanel.TabIndex = 9;
+            this.toppanel.Paint += new System.Windows.Forms.PaintEventHandler(this.flowLayoutPanel1_Paint_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.toppanel);
             this.Controls.Add(this.pnlgame);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pnlace);
-            this.Controls.Add(this.pnlPlayer1);
+            this.Controls.Add(this.downpanel);
             this.Controls.Add(this.pnlTable);
             this.Controls.Add(this.pnlDeck);
             this.Controls.Add(this.lbl);
@@ -135,10 +145,11 @@
         private System.Windows.Forms.Label lbl;
         private System.Windows.Forms.FlowLayoutPanel pnlDeck;
         private System.Windows.Forms.FlowLayoutPanel pnlTable;
-        private System.Windows.Forms.FlowLayoutPanel pnlPlayer1;
+        private System.Windows.Forms.FlowLayoutPanel downpanel;
         private System.Windows.Forms.FlowLayoutPanel pnlace;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.FlowLayoutPanel pnlgame;
+        private System.Windows.Forms.FlowLayoutPanel toppanel;
     }
 }
 

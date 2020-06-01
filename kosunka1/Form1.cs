@@ -15,18 +15,28 @@ namespace kosunka1
         public Form1()
         {
             InitializeComponent();
-            game = new Game();
+            game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck,54), new GraphicCardSet(downpanel, 7), new GraphicCardSet(toppanel, 5));
             game.GameWon += Final;
         }
 
-        Card activeCard;
+        CardSet to;
         Game game;
-        Player mover;
+        CardSet from;
+        int b = 54;
 
         private void Final(bool IsWin)
         {
-            
+            //long n;
+            //for (n = 9; n < 13; n++)
+            //{
+            //    if (IsWin(n) != 13) return false;
+
+            //}
+            //return true;
+
         }
+
+    
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -60,9 +70,9 @@ namespace kosunka1
 
         private void CardPictureBox_DoubleClick(object sender, EventArgs e)
         {
-            if (activeCard != null)
+            if (to != null)
             {
-                game.Move(mover, activeCard);
+                game.Move(from, to,b);
             }
         }
         private void ShowMessage(string message)
@@ -71,23 +81,23 @@ namespace kosunka1
         }
         private void MarkPlayer(Player activePlayer)
         {
-            foreach (var player in game.Players)
-            {
-                //if (player == activePlayer)
-                //    foreach (var card in player.PlayerCards.Cards)
-                //    {
-                //        GraphicCard graphicCard = (GraphicCard)card;
-                //        graphicCard.Opened = true;
-                //    }
-                //else
-                    foreach (var card in player.PlayerCards.Cards)
-                    {
-                        GraphicCard graphicCard = (GraphicCard)card;
-                        graphicCard.Opened =true;
-                    }
-               
-            }
-            game.Refresh();
+            //foreach (var player in game.Players)
+            //{
+            //    if (player == activePlayer)
+            //        foreach (var card in player.PlayerCards.Cards)
+            //        {
+            //            GraphicCard graphicCard = (GraphicCard)card;
+            //            graphicCard.Opened = true;
+            //        }
+            //    else
+            //        foreach (var card in player.PlayerCards.Cards)
+            //        {
+            //            GraphicCard graphicCard = (GraphicCard)card;
+            //            graphicCard.Opened = true;
+            //        }
+
+            //}
+            //game.Refresh();
 
         }
 
@@ -95,23 +105,23 @@ namespace kosunka1
 
         private void SetActiveCard(PictureBox pictureBox)
         {
-            foreach (var player in game.Players)
+            foreach (var player in game)
             {
                 foreach (var card in player.PlayerCards.Cards)
                 {
                     if (((GraphicCard)card).Pb == pictureBox)
                     {
-                        if (card == activeCard)
+                        if (card == to)
                         {
-                            activeCard = null;
+                            to = null;
                             pictureBox.Top -= 10;
-                            mover = null;
+                            from = null;
                         }
                         else
                         {
-                            activeCard = card;
+                            to = card;
                             pictureBox.Top += 10;
-                            mover = player;
+                            from = player;
                         }
 
 
@@ -126,14 +136,13 @@ namespace kosunka1
         private void pnlTable_Click(object sender, EventArgs e)
         {
 
-            if (activeCard != null && mover != null)
-                game.Move(mover, activeCard);
+            if (to != null && from != null&& b!=null)
+                game.Move(from,to,b);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck, 54), new GraphicCardSet(pnlgame, 54),
-                  new Player("Bob", new GraphicCardSet(pnlPlayer1)),new Player("kek",new GraphicCardSet(pnlgame)));
+            game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck, 54), new GraphicCardSet(downpanel, 7), new GraphicCardSet(toppanel, 5));
 
             foreach (var card in game.Deck.Cards)
             {
@@ -141,7 +150,7 @@ namespace kosunka1
                 cardPictureBox.DoubleClick += CardPictureBox_DoubleClick;
                 cardPictureBox.Click += CardPictureBox_Click;
             }
-            foreach (var card in game.Pnlgame.Cards)
+            foreach (var card in game.Table.Cards)
             {
                 PictureBox cardPictureBox = ((GraphicCard)card).Pb;
                 cardPictureBox.DoubleClick += CardPictureBox_DoubleClick;
@@ -165,6 +174,11 @@ namespace kosunka1
         }
 
         private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
         }

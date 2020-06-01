@@ -22,10 +22,10 @@ namespace kosunka1
         public Action<Player> MarkActivePlayer;
         public Action<string> ShowMessage;
 
-        public Game(CardSet table, CardSet deck,DownCardSet[] downCardSets, CardSet[] topCardSets)
+        public Game(CardSet table, CardSet deck,DownCardSet[] downCardSets, TopCardSet[] topCardSets)
         {
             downCards = downCardSets;
-            topCardSets = topCardSets;
+            topCards = topCardSets;
             Table = table;
             Deck = deck;
             
