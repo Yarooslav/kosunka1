@@ -50,6 +50,7 @@
     <Compile Include="CardColor.cs" />
     <Compile Include="CardSet.cs" />
     <Compile Include="GraphicDownCardSet.cs" />
+    <Compile Include="GraphicTopCardSet.cs" />
     <Compile Include="TopCardSet.cs" />
     <Compile Include="DownCardSet.cs" />
     <Compile Include="Form1.cs">
