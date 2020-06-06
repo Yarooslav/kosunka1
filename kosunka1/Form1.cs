@@ -17,7 +17,7 @@ namespace kosunka1
             InitializeComponent();
             TopCardSet[] tcs = { new GraphicTopCardSet(panel1), new GraphicTopCardSet(panel2), new GraphicTopCardSet(panel3), new GraphicTopCardSet(panel4) };
             DownCardSet[] dcs = { new GraphicDownCardSet(panel5), new GraphicDownCardSet(panel6), new GraphicDownCardSet(panel7), new GraphicDownCardSet(panel8), new GraphicDownCardSet(panel9), new GraphicDownCardSet(panel10), new GraphicDownCardSet(panel11) };
-            game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck,54),new GraphicDownCardSet(dcs), new GraphicTopCardSet(tcs));
+            game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck,54),dcs,tcs);
             game.GameWon += Final;
         }
 
@@ -151,10 +151,6 @@ namespace kosunka1
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             game.Move(game.Deck, game.Table, 3);
-            TopCardSet[] tcs = { new GraphicTopCardSet(panel1), new GraphicTopCardSet(panel2), new GraphicTopCardSet(panel3), new GraphicTopCardSet(panel4) };
-            DownCardSet[] dcs = { new GraphicDownCardSet(panel5), new GraphicDownCardSet(panel6), new GraphicDownCardSet(panel7), new GraphicDownCardSet(panel8), new GraphicDownCardSet(panel9), new GraphicDownCardSet(panel10), new GraphicDownCardSet(panel11) };
-
-            game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck, 54), new GraphicDownCardSet(dcs), new GraphicTopCardSet(tcs)); 
 
             foreach (var card in game.Deck.Cards)
             {
