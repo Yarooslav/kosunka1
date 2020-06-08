@@ -33,15 +33,11 @@ namespace kosunka1
 
         public void Move(CardSet from, CardSet to, int amount)
         { 
-            //
-
-            //проверить возможен ли такой ход
+            
             if (to.IsCoorect(from.Peek(amount)))
                 to.Add(from.DealFromTop(amount));
             Refresh();
-            //переложить карту, если возможно
-            //рефреш
-            // проверка вигрыша и проигрыша
+           
         }
 
         public void Refresh()
