@@ -12,23 +12,24 @@ namespace kosunka1
     {
         public CardSet Table { get; }
         public CardSet Deck { get; }
-        private DownCardSet[] downCards = new DownCardSet[7];
-        private TopCardSet[] topCards = new TopCardSet[6];
-        public Action<bool> GameWon;
 
+        public DownCardSet[] DownCardSets { get; }
+        public TopCardSet[] TopCardSets { get; }
+        public Action<bool> GameWon;
+        private readonly int numOfCardForShowing;
 
 
 
         public Action<Player> MarkActivePlayer;
         public Action<string> ShowMessage;
 
-        public Game(CardSet table, CardSet deck,DownCardSet[] downCardSets, TopCardSet[] topCardSets)
+        public Game(CardSet table, CardSet deck,DownCardSet[] downCardSets, TopCardSet[] topCardSets, int numOfCardForShowing=3)
         {
-            downCards = downCardSets;
-            topCards = topCardSets;
+            DownCardSets = downCardSets;
+            TopCardSets = topCardSets;
             Table = table;
             Deck = deck;
-            
+            this.numOfCardForShowing = numOfCardForShowing;
         }
 
         public void Move(CardSet from, CardSet to, int amount)
@@ -42,19 +43,15 @@ namespace kosunka1
 
         public void Refresh()
         {
-            foreach (var item in topCards)
+            foreach (var item in TopCardSets)
             {
                 item.Show();
-
-
-
             }
-                            foreach (var item1 in downCards)
-                {
-                    item1.Show();
-
-
-                }
+            foreach (var item1 in DownCardSets)
+            {
+                item1.Show();
+            }
+            Deck.Show();
             Table.Show();
         }
 
@@ -69,24 +66,21 @@ namespace kosunka1
 
         public void ShowNewCrd()
         {
-            
+            Table.Add(Deck.Deal(numOfCardForShowing));
+            Refresh();
         }
         public void Deal()
         {
             
             Deck.Mix();
-            for (int i = 0; i < topCards.Length; i++)
+
+
+            for (int i = 0; i < DownCardSets.Length; i++)
             {
-                topCards[i] = new TopCardSet();
+                DownCardSets[i].Add(Deck.Deal(i+1));
             }
 
-            for (int i = 0; i < topCards.Length; i++)
-            {
-                downCards[i] = new DownCardSet();
-                downCards[i].Add(Deck.Deal(i));
-            }
-
-            Refresh();
+            ShowNewCrd();
         }
         //public void GameOver()
         //{

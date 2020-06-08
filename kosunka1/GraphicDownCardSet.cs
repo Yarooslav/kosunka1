@@ -25,11 +25,11 @@ namespace kosunka1
                 PictureBox pb = graphicCard.Pb;
                 Panel.Controls.Add(pb);
                 pb.BringToFront();
-                pb.Size = new Size(Panel.Width, Panel.Height * pb.Image.Width / pb.Image.Width);
-                pb.Location = new Point(0, i * (Panel.Width - pb.Width) / Cards.Count);
+                pb.Size = new Size(Panel.Width, Panel.Width * pb.Image.Height / pb.Image.Width);
+                pb.Location = new Point(0, i * (Panel.Height - pb.Height) / Cards.Count);
                 pb.TabIndex = i;
                 pb.TabStop = false;
-                graphicCard.Opened = i == Cards.Count - 1;
+                graphicCard.Opened = graphicCard.Opened || i == Cards.Count - 1;
                 graphicCard.Show();
             }
 

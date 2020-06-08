@@ -66,7 +66,7 @@ namespace kosunka1
 
         public CardSet Peek(int amount)
         {
-            return new CardSet(Cards.GetRange(Count - 1 - amount, amount));
+            return new CardSet(Cards.GetRange(Count - amount, amount));
         }
 
         public CardSet DealFromTop(int amount)
@@ -123,8 +123,8 @@ namespace kosunka1
 
             for (int i = 0; i < amount; i++)
             {
-                c.Add(Cards[i]);
-                Cards.RemoveAt(i);
+                c.Add(Cards[0]);
+                Cards.RemoveAt(0);
             }
 
             return c;

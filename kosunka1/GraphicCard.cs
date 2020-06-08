@@ -28,7 +28,7 @@ namespace kosunka1
         private readonly string imageShirtPath = Application.StartupPath + @"\images\shirt.jpg";
         private readonly string fileName;
 
-        public GraphicCard(CardFigure figure, CardSuit suit, PictureBox pb, bool opened = true) : base(figure, suit)
+        public GraphicCard(CardFigure figure, CardSuit suit, PictureBox pb, bool opened = false) : base(figure, suit)
         {
             Pb = pb;
             Pb.SizeMode = PictureBoxSizeMode.Zoom;
