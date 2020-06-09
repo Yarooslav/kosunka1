@@ -73,7 +73,7 @@ namespace kosunka1
         {
             CardSet cardSet = new CardSet();
             cardSet = Peek(amount);
-            Cards.RemoveRange(Count - 1 - amount, amount);
+            Cards.RemoveRange(Count - amount, amount);
             return cardSet;
         }
 

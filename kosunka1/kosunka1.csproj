@@ -49,6 +49,7 @@
     <Compile Include="Card.cs" />
     <Compile Include="CardColor.cs" />
     <Compile Include="CardSet.cs" />
+    <Compile Include="Exstentions.cs" />
     <Compile Include="GraphicDownCardSet.cs" />
     <Compile Include="GraphicTopCardSet.cs" />
     <Compile Include="TopCardSet.cs" />

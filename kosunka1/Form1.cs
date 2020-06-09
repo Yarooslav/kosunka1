@@ -22,6 +22,7 @@ namespace kosunka1
         GraphicDownCardSet activeCardSet;
         private Panel panelForMoving;
         private Point startLocation;
+        PictureBox pbForMoving;
 
         public Form1()
         {
@@ -59,7 +60,24 @@ namespace kosunka1
 
         private void CardPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            //throw new NotImplementedException();
+            Rectangle r2 = new Rectangle() { Size = activeCardSet.Panel.Size, Location = activeCardSet.Panel.Location };
+            foreach (var downCardSet in game.DownCardSets)
+            {
+                Rectangle r1 = new Rectangle() { Size = ((GraphicDownCardSet)downCardSet).Panel.Size, Location = ((GraphicDownCardSet)downCardSet).Panel.Location };
+
+                if (r2.IntersectsWith(r1))
+                {
+                    to = downCardSet;
+                    break;
+                }
+            }
+
+            if (from != null && to != null && activeamount >= 1)
+                game.Move(from, to, activeamount);
+
+            activeamount = default;
+            Controls.Remove(activeCardSet.Panel);
+            activeCardSet = default;
         }
 
         private void CardPictureBox_MouseLeave(object sender, EventArgs e)
@@ -69,28 +87,44 @@ namespace kosunka1
 
         private void CardPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
+            if (e.Button != MouseButtons.Left) return;
+            if ((PictureBox)sender != pbForMoving) return;
 
+            activeCardSet.Panel.Left -= startLocation.X - e.X;
+
+            activeCardSet.Panel.Top -= startLocation.Y - e.Y;
         }
+
+
+
 
         private void CardPictureBox_MouseDown(object sender, MouseEventArgs e)
         {
             PictureBox cardPb = (PictureBox)sender;
+            pbForMoving = cardPb;
             SetFromAmount(cardPb);
+            CreateActiveCardSet();
+            startLocation = e.Location;
+            activeCardSet.Panel.Location = ((GraphicDownCardSet)from).Panel.Location.Plus(e.Location);
+        }
 
+        private void CreateActiveCardSet()
+        {
+            int cardSpace = 20;
             activeCardSet = new GraphicDownCardSet(new Panel());
             activeCardSet.Add(from.Peek(activeamount));
-            activeCardSet.Panel.Size = new Size(((GraphicDownCardSet)from).Panel.Width, ((GraphicDownCardSet)from).Panel.Width);
-            label2.Text = e.Location.X.ToString() + " " + e.Location.Y.ToString();
+            activeCardSet.Panel.Size = new Size(panel1.Width, panel12.Height + cardSpace * activeamount);
             activeCardSet.Panel.MouseMove += Panel_MouseMove;
-            activeCardSet.Panel.Location = ((GraphicDownCardSet)from).Panel.Location;
+            
             panelForMoving = activeCardSet.Panel;
-            startLocation = e.Location;
             this.Controls.Add(activeCardSet.Panel);
+            activeCardSet.Panel.BringToFront();
             activeCardSet.Show();
         }
 
         private void Panel_MouseMove(object sender, MouseEventArgs e)
         {
+            MessageBox.Show("Op");
 
             if (e.Button != MouseButtons.Left) return;
 
@@ -267,6 +301,12 @@ namespace kosunka1
         private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button != MouseButtons.Left) return;
+            MessageBox.Show("IHA");
         }
     }
 }
