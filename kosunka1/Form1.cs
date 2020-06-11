@@ -55,8 +55,12 @@ namespace kosunka1
 
         private void CardPictureBox_DoubleClick1(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
-
+            //throw new NotImplementedException();
+            CardSet newCards = new CardSet();
+            if (Count == 0 && newCards[0].Figure == CardFigure.Ace) return true;
+            if (Cards[0].Color != newCards.LastCard.Color) return false;
+            if (Cards[0].Figure != newCards.LastCard.Figure + 1) return false;
+            return true;
         }
 
         private void CardPictureBox_MouseUp(object sender, MouseEventArgs e)
