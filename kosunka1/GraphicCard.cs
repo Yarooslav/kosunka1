@@ -32,7 +32,7 @@ namespace kosunka1
         {
             Pb = pb;
             Pb.SizeMode = PictureBoxSizeMode.Zoom;
-            Pb.Visible = false;
+            Pb.Visible =false;
             fileName = Application.StartupPath + @"\images\" + this.ToString() + ".png";
             Opened = opened;
         }

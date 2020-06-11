@@ -56,6 +56,7 @@ namespace kosunka1
         private void CardPictureBox_DoubleClick1(object sender, EventArgs e)
         {
             throw new NotImplementedException();
+
         }
 
         private void CardPictureBox_MouseUp(object sender, MouseEventArgs e)
@@ -80,10 +81,7 @@ namespace kosunka1
             activeCardSet = default;
         }
 
-        private void CardPictureBox_MouseLeave(object sender, EventArgs e)
-        {
-            //throw new NotImplementedException();
-        }
+       
 
         private void CardPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
