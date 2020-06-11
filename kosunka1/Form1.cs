@@ -57,10 +57,10 @@ namespace kosunka1
         {
             //throw new NotImplementedException();
             CardSet newCards = new CardSet();
-            if (Count == 0 && newCards[0].Figure == CardFigure.Ace) return true;
-            if (Cards[0].Color != newCards.LastCard.Color) return false;
-            if (Cards[0].Figure != newCards.LastCard.Figure + 1) return false;
-            return true;
+            if (Cardset.Count == 0 && newCards[0].Figure == CardFigure.Ace) return ;
+            if (CardSet.Cards[0].Color != newCards.LastCard.Color) return ;
+            if (CardSet.Cards[0].Figure != newCards.LastCard.Figure + 1) return ;
+            return ;
         }
 
         private void CardPictureBox_MouseUp(object sender, MouseEventArgs e)
