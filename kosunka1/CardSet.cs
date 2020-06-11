@@ -22,7 +22,7 @@ namespace kosunka1
            
      
 
-        protected int Count
+        public int Count
         {
             get { return Cards.Count; }
         }
