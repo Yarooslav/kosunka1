@@ -45,40 +45,69 @@ namespace kosunka1
                 cardPictureBox.MouseMove += CardPictureBox_MouseMove;
                 cardPictureBox.MouseUp += CardPictureBox_MouseUp;
                 cardPictureBox.DoubleClick += CardPictureBox_DoubleClick1;
+                cardPictureBox.MouseClick += CardPictureBox_MouseClick;
             }
 
             game.ShowMessage = ShowMessage;
             game.MarkActivePlayer = MarkPlayer;
             game.Deal();
+            ShowTable();
             game.GameWon += Final;
+        }
+
+        private void ShowTable()
+        {
+            foreach (var item in game.Table.Cards)
+            {
+                if (item is GraphicCard)
+                    ((GraphicCard)item).Opened = true;
+            };
+        }
+
+        private void CardPictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            PictureBox cardPb = (PictureBox)sender;
+            if (cardPb != ((GraphicCard)game.Deck.LastCard).Pb) return;
+            game.ShowNewCrd();
+            ShowTable();
         }
 
         private void CardPictureBox_DoubleClick1(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            PictureBox cardPb = (PictureBox)sender;
+            SetFromAmount(cardPb);
+            foreach (var cardset in game.TopCardSets)
+            {
+                if (from != null && (cardset.Cards.Count == 0 || cardset.Cards[0].Suit == from.Cards[0].Suit))
+                {
+                    game.Move(from, cardset, activeamount);
+                    return;
+                }
+            }
 
         }
 
         private void CardPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
+            if (from == null) return;
+            if (activeamount <= 0) return;
             Rectangle r2 = new Rectangle() { Size = activeCardSet.Panel.Size, Location = activeCardSet.Panel.Location };
             foreach (var downCardSet in game.DownCardSets)
             {
-                Rectangle r1 = new Rectangle() { Size = ((GraphicDownCardSet)downCardSet).Panel.Size, Location = ((GraphicDownCardSet)downCardSet).Panel.Location };
+                Rectangle r1 = new Rectangle() { Size = ((IGraphicsCardSet)downCardSet).Panel.Size, Location = ((GraphicDownCardSet)downCardSet).Panel.Location };
 
                 if (r2.IntersectsWith(r1))
                 {
                     to = downCardSet;
+                    game.Move(from, to, activeamount);
                     break;
                 }
             }
 
-            if (from != null && to != null && activeamount >= 1)
-                game.Move(from, to, activeamount);
-
             activeamount = default;
             Controls.Remove(activeCardSet.Panel);
             activeCardSet = default;
+            game.Refresh();
         }
 
        
@@ -87,6 +116,7 @@ namespace kosunka1
         {
             if (e.Button != MouseButtons.Left) return;
             if ((PictureBox)sender != pbForMoving) return;
+            if (from == null) return;
 
             activeCardSet.Panel.Left -= startLocation.X - e.X;
 
@@ -101,13 +131,16 @@ namespace kosunka1
             PictureBox cardPb = (PictureBox)sender;
             pbForMoving = cardPb;
             SetFromAmount(cardPb);
+            if (from == null) return;
+
             CreateActiveCardSet();
             startLocation = e.Location;
-            activeCardSet.Panel.Location = ((GraphicDownCardSet)from).Panel.Location.Plus(e.Location);
+            activeCardSet.Panel.Location = ((IGraphicsCardSet)from).Panel.Location.Plus(e.Location);
         }
 
         private void CreateActiveCardSet()
         {
+            
             int cardSpace = 20;
             activeCardSet = new GraphicDownCardSet(new Panel());
             activeCardSet.Add(from.Peek(activeamount));
@@ -147,6 +180,8 @@ namespace kosunka1
             int index = game.Table.Cards.FindIndex(c => c is GraphicCard && ((GraphicCard)c).Pb == cardPb);
             if (index != -1)
             {
+                if (cardPb != ((GraphicCard)game.Table.LastCard).Pb) return;
+
                 from = game.Table;
                 activeamount = 1;
                 return;

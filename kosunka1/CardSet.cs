@@ -17,7 +17,7 @@ namespace kosunka1
         
         public Card LastCard
         {
-            get { return Cards[Cards.Count - 1]; }
+            get { return Cards.Count > 0 ? Cards[Cards.Count - 1] : default; }
         }
            
      

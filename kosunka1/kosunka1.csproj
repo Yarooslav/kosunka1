@@ -54,6 +54,7 @@
     <Compile Include="Exstentions.cs" />
     <Compile Include="GraphicDownCardSet.cs" />
     <Compile Include="GraphicTopCardSet.cs" />
+    <Compile Include="IGraphiscCardSet.cs" />
     <Compile Include="TopCardSet.cs" />
     <Compile Include="DownCardSet.cs" />
     <Compile Include="Form1.cs">

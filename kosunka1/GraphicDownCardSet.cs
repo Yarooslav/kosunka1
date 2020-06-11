@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace kosunka1
 {
-    class GraphicDownCardSet:DownCardSet
+    class GraphicDownCardSet:DownCardSet, IGraphicsCardSet
     {
         public Panel Panel { get; set; }
 
@@ -19,6 +19,7 @@ namespace kosunka1
 
         public override void Show()
         {
+            int dy = 20;
             for (int i = 0; i < Cards.Count; i++)
             {
                 GraphicCard graphicCard = (GraphicCard)Cards[i];
@@ -26,7 +27,7 @@ namespace kosunka1
                 Panel.Controls.Add(pb);
                 pb.BringToFront();
                 pb.Size = new Size(Panel.Width, Panel.Width * pb.Image.Height / pb.Image.Width);
-                pb.Location = new Point(0, i * (Panel.Height - pb.Height) / Cards.Count);
+                pb.Location = new Point(0,  (Panel.Height - pb.Height) / Cards.Count < dy ? i * (Panel.Height - pb.Height) / Cards.Count : i * dy);
                 pb.TabIndex = i;
                 pb.TabStop = false;
                 graphicCard.Opened = graphicCard.Opened || i == Cards.Count - 1;

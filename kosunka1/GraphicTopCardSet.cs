@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace kosunka1
 {
-    class GraphicTopCardSet:TopCardSet 
+    class GraphicTopCardSet:TopCardSet, IGraphicsCardSet
     {
 
         public Panel Panel { get; set; }

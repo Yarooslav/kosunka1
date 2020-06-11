@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace kosunka1
 {
-    class GraphicCardSet: CardSet
+    class GraphicCardSet: CardSet, IGraphicsCardSet
     {
         public Panel Panel { get; set; }
 
@@ -32,6 +32,7 @@ namespace kosunka1
 
         public override void Show()
         {
+            int dy = 20;
             for (int i = 0; i < Cards.Count; i++)
             {
                 GraphicCard graphicCard = (GraphicCard)Cards[i];
@@ -39,8 +40,7 @@ namespace kosunka1
                 Panel.Controls.Add(pb);
                 pb.BringToFront();
                 pb.Size = new Size(Panel.Height * pb.Image.Width/ pb.Image.Height, Panel.Height);
-                pb.Location = new Point(i * (Panel.Width - pb.Width) / Cards.Count, 0);
-                pb.TabIndex = i;
+                pb.Location = new Point(1.0*(Panel.Width - pb.Width) / Cards.Count < dy ? i * (Panel.Width - pb.Width) / Cards.Count : i * dy, 0);                pb.TabIndex = i;
                 pb.TabStop = false;
                 graphicCard.Show();
             }
