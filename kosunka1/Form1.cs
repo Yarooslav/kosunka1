@@ -36,7 +36,7 @@ namespace kosunka1
                 new GraphicDownCardSet(panel10),
                 new GraphicDownCardSet(panel11) };
             game = new Game(new GraphicCardSet(panel13), new GraphicCardSet(panel12, 54), dcs, tcs);
-            game.Move(game.Deck, game.Table, 3);
+            game.Move(game.Deck, game.Table, activeamount);
 
             foreach (var card in game.Deck.Cards)
             {
@@ -68,6 +68,7 @@ namespace kosunka1
         {
             PictureBox cardPb = (PictureBox)sender;
             if (cardPb != ((GraphicCard)game.Deck.LastCard).Pb) return;
+           
             game.ShowNewCrd();
             ShowTable();
         }
@@ -340,6 +341,37 @@ namespace kosunka1
         {
             if (e.Button != MouseButtons.Left) return;
             MessageBox.Show("IHA");
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            TopCardSet[] tcs = { new GraphicTopCardSet(panel1), new GraphicTopCardSet(panel2), new GraphicTopCardSet(panel3), new GraphicTopCardSet(panel4) };
+            DownCardSet[] dcs = { new GraphicDownCardSet(panel5),
+                new GraphicDownCardSet(panel6),
+                new GraphicDownCardSet(panel7),
+                new GraphicDownCardSet(panel8),
+                new GraphicDownCardSet(panel9),
+                new GraphicDownCardSet(panel10),
+                new GraphicDownCardSet(panel11) };
+            game = new Game(new GraphicCardSet(panel13), new GraphicCardSet(panel12, 54), dcs, tcs);
+            game.Move(game.Deck, game.Table, activeamount);
+
+            foreach (var card in game.Deck.Cards)
+            {
+                PictureBox cardPictureBox = ((GraphicCard)card).Pb;
+                cardPictureBox.MouseDown += CardPictureBox_MouseDown;
+                cardPictureBox.MouseMove += CardPictureBox_MouseMove;
+                cardPictureBox.MouseUp += CardPictureBox_MouseUp;
+                cardPictureBox.DoubleClick += CardPictureBox_DoubleClick1;
+                cardPictureBox.MouseClick += CardPictureBox_MouseClick;
+            }
+
+            game.ShowMessage = ShowMessage;
+            game.MarkActivePlayer = MarkPlayer;
+            game.Deal();
+            ShowTable();
+            game.GameWon += Final;
+            game.Refresh();
         }
     }
 }

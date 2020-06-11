@@ -121,4 +121,13 @@
   <data name="1453486485176659442" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\1453486485176659442.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="base_foundation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\base_foundation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="base_redeal" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\base_redeal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="igralnye-karty-stranitsa-08-oborotnaya-storona" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\igralnye-karty-stranitsa-08-oborotnaya-storona.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

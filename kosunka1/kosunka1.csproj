@@ -98,5 +98,14 @@
   <ItemGroup>
     <None Include="Resources\1453486485176659442.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\base_redeal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\base_foundation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\igralnye-karty-stranitsa-08-oborotnaya-storona.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
