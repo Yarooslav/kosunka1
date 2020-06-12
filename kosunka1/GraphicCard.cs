@@ -11,6 +11,9 @@ namespace kosunka1
     class GraphicCard: Card
     {
         public PictureBox Pb { get; set; }
+        private Image imageCard; 
+        private Image imageShirt;
+
         public bool Opened
         {
             get
@@ -20,7 +23,7 @@ namespace kosunka1
             set
             {
                 opened = value;
-                Pb.Image = opened ? Image.FromFile(fileName) : Image.FromFile(imageShirtPath);
+                Pb.Image = opened ? imageCard : imageShirt;
             }
         }
 
@@ -34,6 +37,8 @@ namespace kosunka1
             Pb.SizeMode = PictureBoxSizeMode.Zoom;
             Pb.Visible =false;
             fileName = Application.StartupPath + @"\images\" + this.ToString() + ".png";
+            imageCard = Image.FromFile(fileName);
+            imageShirt = Image.FromFile(imageShirtPath);
             Opened = opened;
         }
 

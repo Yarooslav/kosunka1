@@ -297,7 +297,10 @@ namespace kosunka1
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            NewGame();
+            
+            Form1 form1 = new Form1();
+            form1.Show();
+            this.Hide();
         }
 
         private void NewGame()
