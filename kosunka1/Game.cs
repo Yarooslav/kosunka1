@@ -55,6 +55,13 @@ namespace kosunka1
             Table.Show();
         }
 
+        public void DeckRepeat()
+        {
+            while (Table.Count != 0)
+                Deck.Add(Table.Deal(1));
+            Refresh();
+        }
+
 
 
         //private Player PreviousPlayer(Player player)

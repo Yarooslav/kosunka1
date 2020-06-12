@@ -17,10 +17,10 @@ namespace kosunka1
            
 
             //первая карта должна быть одинакового цвета
-            if (Cards[0].Color == newCards.LastCard.Color) return false;
+            if (Cards[0].Suit != newCards.LastCard.Suit) return false;
 
             //значение первой карты должно быть на единицу больше, чем последней в колоде
-            if (Cards[0].Figure != newCards.LastCard.Figure+1) return false;
+            if (LastCard.Figure != newCards[0].Figure-1) return false;
 
             return true;
 

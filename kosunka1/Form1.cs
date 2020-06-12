@@ -27,32 +27,7 @@ namespace kosunka1
         public Form1()
         {
             InitializeComponent();
-            TopCardSet[] tcs = { new GraphicTopCardSet(panel1), new GraphicTopCardSet(panel2), new GraphicTopCardSet(panel3), new GraphicTopCardSet(panel4) };
-            DownCardSet[] dcs = { new GraphicDownCardSet(panel5),
-                new GraphicDownCardSet(panel6),
-                new GraphicDownCardSet(panel7),
-                new GraphicDownCardSet(panel8),
-                new GraphicDownCardSet(panel9),
-                new GraphicDownCardSet(panel10),
-                new GraphicDownCardSet(panel11) };
-            game = new Game(new GraphicCardSet(panel13), new GraphicCardSet(panel12, 54), dcs, tcs);
-            game.Move(game.Deck, game.Table, activeamount);
-
-            foreach (var card in game.Deck.Cards)
-            {
-                PictureBox cardPictureBox = ((GraphicCard)card).Pb;
-                cardPictureBox.MouseDown += CardPictureBox_MouseDown;
-                cardPictureBox.MouseMove += CardPictureBox_MouseMove;
-                cardPictureBox.MouseUp += CardPictureBox_MouseUp;
-                cardPictureBox.DoubleClick += CardPictureBox_DoubleClick1;
-                cardPictureBox.MouseClick += CardPictureBox_MouseClick;
-            }
-
-            game.ShowMessage = ShowMessage;
-            game.MarkActivePlayer = MarkPlayer;
-            game.Deal();
-            ShowTable();
-            game.GameWon += Final;
+            NewGame();
         }
 
         private void ShowTable()
@@ -67,7 +42,7 @@ namespace kosunka1
         private void CardPictureBox_MouseClick(object sender, MouseEventArgs e)
         {
             PictureBox cardPb = (PictureBox)sender;
-            if (cardPb != ((GraphicCard)game.Deck.LastCard).Pb) return;
+            if (game.Deck.Count == 0 || cardPb != ((GraphicCard)game.Deck.LastCard).Pb) return;
            
            game.ShowNewCrd();
             ShowTable();
@@ -79,7 +54,7 @@ namespace kosunka1
             SetFromAmount(cardPb);
             foreach (var cardset in game.TopCardSets)
             {
-                if (from != null && (cardset.Cards.Count == 0 || cardset.Cards[0].Suit == from.Cards[0].Suit))
+                if (from != null && (cardset.Cards.Count == 0 || cardset.Cards[0].Suit == from.LastCard.Suit))
                 {
                     game.Move(from, cardset, activeamount);
                     return;
@@ -90,7 +65,7 @@ namespace kosunka1
 
         private void CardPictureBox_MouseUp(object sender, MouseEventArgs e)
         {
-            if (from == null) return;
+            if (from == null || from.Count==0) return;
             if (activeamount <= 0) return;
             Rectangle r2 = new Rectangle() { Size = activeCardSet.Panel.Size, Location = activeCardSet.Panel.Location };
             foreach (var downCardSet in game.DownCardSets)
@@ -156,24 +131,24 @@ namespace kosunka1
 
         private void Panel_MouseMove(object sender, MouseEventArgs e)
         {
-            MessageBox.Show("Op");
+            //MessageBox.Show("Op");
 
-            if (e.Button != MouseButtons.Left) return;
+            //if (e.Button != MouseButtons.Left) return;
 
-            if (from == null) return;
+            //if (from == null) return;
 
-            if (activeamount <= 0) return;
+            //if (activeamount <= 0) return;
 
-            if ((Panel)sender != panelForMoving) return;
+            //if ((Panel)sender != panelForMoving) return;
 
-            activeCardSet.Panel.Location = e.Location;
+            //activeCardSet.Panel.Location = e.Location;
 
-            label1.Text = e.Location.X.ToString() + " " + e.Location.Y.ToString();
+            //label1.Text = e.Location.X.ToString() + " " + e.Location.Y.ToString();
 
-            //panelForMoving.Location.Offset(startLocation.X - e.X, startLocation.Y - e.Y);
+            ////panelForMoving.Location.Offset(startLocation.X - e.X, startLocation.Y - e.Y);
 
-            //panelForMoving.Top -= startLocation.Y - e.Y;
-            //MessageBox.Show(activeCardSet.Panel.Location.X.ToString() + activeCardSet.Panel.Location.Y.ToString());
+            ////panelForMoving.Top -= startLocation.Y - e.Y;
+            ////MessageBox.Show(activeCardSet.Panel.Location.X.ToString() + activeCardSet.Panel.Location.Y.ToString());
         }
 
         private void SetFromAmount(PictureBox cardPb)
@@ -321,7 +296,12 @@ namespace kosunka1
         }
 
         private void button1_Click_1(object sender, EventArgs e)
-        { 
+        {
+            NewGame();
+        }
+
+        private void NewGame()
+        {
             TopCardSet[] tcs = { new GraphicTopCardSet(panel1), new GraphicTopCardSet(panel2), new GraphicTopCardSet(panel3), new GraphicTopCardSet(panel4) };
             DownCardSet[] dcs = { new GraphicDownCardSet(panel5),
                 new GraphicDownCardSet(panel6),
@@ -348,6 +328,25 @@ namespace kosunka1
             game.Deal();
             ShowTable();
             game.GameWon += Final;
+        }
+
+        private void panel12_Click(object sender, EventArgs e)
+        {
+            game.DeckRepeat();
+            HideDeck();
+        }
+
+        private void HideDeck()
+        {
+            foreach (var item in game.Deck.Cards)
+            {
+                if (item is GraphicCard)
+                    ((GraphicCard)item).Opened = false;
+            };
+        }
+
+        private void panel12_Paint(object sender, PaintEventArgs e)
+        {
             
         }
     }

@@ -11,7 +11,9 @@ namespace kosunka1
         public override bool IsCoorect(CardSet newCards)
         {
             //на пустую можно класть только Короля
-            if (Count == 0 && newCards[0].Figure == CardFigure.King) return true;
+            if (Count == 0)
+                if (newCards[0].Figure == CardFigure.King) return true;
+                else return false;
 
             //первая карта должна быть другого цвета
             if (LastCard.Color == newCards[0].Color) return false;
