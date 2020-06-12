@@ -69,9 +69,9 @@ namespace kosunka1
             PictureBox cardPb = (PictureBox)sender;
             if (cardPb != ((GraphicCard)game.Deck.LastCard).Pb) return;
            
-            game.ShowNewCrd();
+           game.ShowNewCrd();
             ShowTable();
-        }
+        } 
 
         private void CardPictureBox_DoubleClick1(object sender, EventArgs e)
         {
@@ -215,24 +215,7 @@ namespace kosunka1
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //game = new Game(new GraphicCardSet(pnlTable), new GraphicCardSet(pnlDeck, 54),
-            //       new Player("Bob", new GraphicCardSet(pnlPlayer1)));
-
-            //foreach (var card in game.Deck.Cards)
-            //{
-            //    PictureBox cardPictureBox = ((GraphicCard)card).Pb;
-            //    cardPictureBox.DoubleClick += CardPictureBox_DoubleClick;
-            //    cardPictureBox.Click += CardPictureBox_Click;
-            //}
-
-            //game.ShowMessage = ShowMessage;
-            //game.MarkActivePlayer = MarkPlayer;
-
-            //game.Deal();
-
-        }
+       
 
         private void CardPictureBox_Click(object sender, EventArgs e)
         {
@@ -253,7 +236,7 @@ namespace kosunka1
         }
         private void MarkPlayer(Player activePlayer)
         {
-            //foreach (var player in game.Players)
+            //foreach (var player in game.player)
             //{
             //    if (player == activePlayer)
             //        foreach (var card in player.PlayerCards.Cards)
@@ -305,13 +288,7 @@ namespace kosunka1
 
         
 
-        private void pnlTable_Click(object sender, EventArgs e)
-        {
-
-            if (to != null && from != null&& b!=null)
-                game.Move(from,to,b);
-        }
-
+        
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -344,7 +321,7 @@ namespace kosunka1
         }
 
         private void button1_Click_1(object sender, EventArgs e)
-        {
+        { 
             TopCardSet[] tcs = { new GraphicTopCardSet(panel1), new GraphicTopCardSet(panel2), new GraphicTopCardSet(panel3), new GraphicTopCardSet(panel4) };
             DownCardSet[] dcs = { new GraphicDownCardSet(panel5),
                 new GraphicDownCardSet(panel6),
@@ -371,7 +348,7 @@ namespace kosunka1
             game.Deal();
             ShowTable();
             game.GameWon += Final;
-            game.Refresh();
+            
         }
     }
 }
