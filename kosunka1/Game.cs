@@ -12,14 +12,10 @@ namespace kosunka1
     {
         public CardSet Table { get; }
         public CardSet Deck { get; }
-
         public DownCardSet[] DownCardSets { get; }
         public TopCardSet[] TopCardSets { get; }
         public Action<bool> GameWon;
         private readonly int numOfCardForShowing;
-
-
-
         public Action<Player> MarkActivePlayer;
         public Action<string> ShowMessage;
 
@@ -62,15 +58,6 @@ namespace kosunka1
             Refresh();
         }
 
-
-
-        //private Player PreviousPlayer(Player player)
-        //{
-        //    if (player == Players[0]) return Players[Players.Count - 1];
-
-        //    return Players[Players.IndexOf(player) - 1];
-        //}
-
         public void ShowNewCrd()
         {
             Table.Add(Deck.Deal(numOfCardForShowing));
@@ -89,14 +76,7 @@ namespace kosunka1
 
             ShowNewCrd();
         }
-        //public void GameOver()
-        //{
-        //    foreach (var item in Players)
-        //    {
-        //        if (item.PlayerCards.Cards.Count != 0)
-        //            ShowMessage(item.Name + "loose");
-        //    }
-        //}
+       
         protected void FireGameWonEvent()
         {
             //если выиграл

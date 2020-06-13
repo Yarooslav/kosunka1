@@ -40,7 +40,8 @@ namespace kosunka1
                 Panel.Controls.Add(pb);
                 pb.BringToFront();
                 pb.Size = new Size(Panel.Height * pb.Image.Width/ pb.Image.Height, Panel.Height);
-                pb.Location = new Point(1.0*(Panel.Width - pb.Width) / Cards.Count < dy ? i * (Panel.Width - pb.Width) / Cards.Count : i * dy, 0);                pb.TabIndex = i;
+                pb.Location = new Point(1.0*(Panel.Width - pb.Width) / Cards.Count < dy ? i * (Panel.Width - pb.Width) / Cards.Count : i * dy, 0);
+                pb.TabIndex = i;
                 pb.TabStop = false;
                 graphicCard.Show();
             }

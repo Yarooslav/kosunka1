@@ -14,22 +14,9 @@ namespace kosunka1
         {
             Name = name;
         }
-        //public CardSuit Suit
-        //{
-        //    get
-        //    {
-        //        int enumVal = (int)CardFigure;
-        //        if (enumVal < 13)
-        //            return CardSuit.Heart;
-        //        if (enumVal < 26)
-        //            return CardSuit.Diamond;
-        //        if (enumVal < 39)
-        //            return CardSuit.Club;
-        //        return CardSuit.Spade;
-        //    }
-        //}
 
-        public Player(string name, CardSet cardSet):this(name)
+
+        public Player(string name, CardSet cardSet) : this(name)
         {
             PlayerCards = cardSet;
         }

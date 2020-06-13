@@ -131,24 +131,7 @@ namespace kosunka1
 
         private void Panel_MouseMove(object sender, MouseEventArgs e)
         {
-            //MessageBox.Show("Op");
-
-            //if (e.Button != MouseButtons.Left) return;
-
-            //if (from == null) return;
-
-            //if (activeamount <= 0) return;
-
-            //if ((Panel)sender != panelForMoving) return;
-
-            //activeCardSet.Panel.Location = e.Location;
-
-            //label1.Text = e.Location.X.ToString() + " " + e.Location.Y.ToString();
-
-            ////panelForMoving.Location.Offset(startLocation.X - e.X, startLocation.Y - e.Y);
-
-            ////panelForMoving.Top -= startLocation.Y - e.Y;
-            ////MessageBox.Show(activeCardSet.Panel.Location.X.ToString() + activeCardSet.Panel.Location.Y.ToString());
+            
         }
 
         private void SetFromAmount(PictureBox cardPb)
@@ -176,10 +159,6 @@ namespace kosunka1
 
         private void Final(bool IsWin)
         {
-          
-
-
-            //MessageBox(W);
 
         }
 
@@ -189,8 +168,7 @@ namespace kosunka1
         {
 
         }
-
-       
+      
 
         private void CardPictureBox_Click(object sender, EventArgs e)
         {
@@ -211,59 +189,15 @@ namespace kosunka1
         }
         private void MarkPlayer(Player activePlayer)
         {
-            //foreach (var player in game.player)
-            //{
-            //    if (player == activePlayer)
-            //        foreach (var card in player.PlayerCards.Cards)
-            //        {
-            //            GraphicCard graphicCard = (GraphicCard)card;
-            //            graphicCard.Opened = true;
-            //        }
-            //    else
-            //        foreach (var card in player.PlayerCards.Cards)
-            //        {
-            //            GraphicCard graphicCard = (GraphicCard)card;
-            //            graphicCard.Opened = true;
-            //        }
-
-            //}
-            //game.Refresh();
+            
 
         }
-
-
 
         private void SetActiveCard(PictureBox pictureBox)
         {
-            //foreach (var player in game)
-            //{
-            //    foreach (var card in player.PlayerCards.Cards)
-            //    {
-            //        if (((GraphicCard)card).Pb == pictureBox)
-            //        {
-            //            if (card == to)
-            //            {
-            //                to = null;
-            //                pictureBox.Top -= 10;
-            //                from = null;
-            //            }
-            //            else
-            //            {
-            //                to = card;
-            //                pictureBox.Top += 10;
-            //                from = player;
-            //            }
-
-
-            //            return;
-            //        }
-            //    }
-            //}
+            
         }
-
-        
-
-        
+ 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -274,25 +208,12 @@ namespace kosunka1
            
         }
 
-        private void pnlPlayer1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
+       
 
         private void Form1_MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left) return;
-            MessageBox.Show("IHA");
+            MessageBox.Show("opa F5");
         }
 
         private void button1_Click_1(object sender, EventArgs e)
